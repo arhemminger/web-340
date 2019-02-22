@@ -1,0 +1,47 @@
+/*
+============================================
+; Title:  site.css
+; Author: Professor Krasso
+; Modified by: Andrew Hemminger
+; Date:   20 February 2019
+; Description: Global styling for coursework
+;===========================================
+*/
+body {
+  font-family: Roboto;
+  font-weight: 300;
+}
+
+h1, h2 {
+  font-weight: 500;
+}
+
+table {
+  border-collapse: collapse;
+  font-weight: 400;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 5px;
+}
+
+th {
+  background-color: steelblue;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: lightsteelblue;
+}
+
+#topbar {
+  width: 100%;
+  background-color: lightgreen;
+}
+
+div.tl20px {
+  margin-top: 20px;
+  margin-left: 20px;
+}
