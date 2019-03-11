@@ -1,6 +1,6 @@
 /*
 ============================================
-; Title:  app.js
+; Title:  Putting it all together
 ; Author: Professor Krasso
 ; Modified by: Andrew Hemminger
 ; Date:   10 March 2019
