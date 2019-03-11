@@ -8,7 +8,7 @@
 ;===========================================
 */
 var header = require('./hemminger-header.js');
-console.log(header.display('Andrew', 'Hemminger', 'Exercise 3.2'));
+console.log(header.display('Andrew', 'Hemminger', 'Exercise 3.3'));
 console.log('');
 
 // start program
@@ -26,7 +26,7 @@ app.set("view engine", "ejs"); // Tell Express to use the EJS view engine
 
 app.use(logger("short"));
 
-//
+// on employee id request <= 10 integer render the id in the response.
 app.get("/:employeeId", function(request, response) {
   var employeeId = parseInt(request.params.employeeId, 10);
 
