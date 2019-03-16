@@ -12,12 +12,13 @@ console.log(header.display('Andrew', 'Hemminger', 'Exercise 3.2'));
 console.log('');
 
 // start program
-// set require statements
+// declarations
 var express = require('express');
 var http = require('http');
 var path = require('path');
 var logger = require('morgan');
 
+// assignments
 var app = express();
 
 app.set('views', path.resolve(__dirname, 'views')); // Telling Express that the 'views' directory houses the views
