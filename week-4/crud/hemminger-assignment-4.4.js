@@ -21,7 +21,7 @@ var http = require("http");
 var app = express();
 
 // requests
-// GET request returning HTTP status code 200.
+// GET request returning custom message.
 app.get("/", function(request, response) {
   response.send("API invoked as an HTTP GET request.");
 });
