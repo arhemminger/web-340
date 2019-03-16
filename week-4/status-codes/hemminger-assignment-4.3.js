@@ -25,7 +25,7 @@ var app = express();
 app.get("/not-found", function(request, response) {
   response.status(404);
   response.json({
-    error: "Resource not found."
+    error: "Page Not Found."
   });
 });
 // 410 status code page permanently unavailable
@@ -46,7 +46,7 @@ app.get("/ok", function(request, response) {
 app.get("/not-implemented", function(request, response) {
   response.status(501);
   response.json({
-    error: "Page not implemented."
+    error: "Page not implemented. Server does not recognize the request method."
   });
 });
 // start node server
