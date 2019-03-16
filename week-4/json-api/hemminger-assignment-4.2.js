@@ -30,7 +30,7 @@ app.get("/customer/:id", function(request, response) {
     employeeId: id
   });
 });
-
+// start node server
 http.createServer(app).listen(8080, function() {
   console.log("Application started on port 8080");
 });
