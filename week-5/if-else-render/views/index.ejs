@@ -1,0 +1,52 @@
+<!--
+============================================
+; Title:  EJS Templates
+; Author: Professor Krasso
+; Date:  23 March 2019
+; Modified by: Andrew Hemminger
+; Description: Exercise 5.2 – EJS Templates
+;===========================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Exercise 5.2 - if...else...render</title>
+
+    <!-- Stylesheet - Bootstrap CDN -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+      integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact Us</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <br><br>
+
+      <h2>List of People:</h2>
+      <!-- Conditional loop to check length of name and display. -->
+      <% if(names.length > 0) { %>
+          <% for (var k = 0; k < names.length; k++) { %>
+            <div class="alert alert-success"><strong><%= names[k] %></strong></div>
+          <% } %>
+      <% } %>
+    </div>
+  </body>
+</html>
