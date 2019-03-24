@@ -1,0 +1,20 @@
+html
+    head
+        title Exercise 5.3 - Pug Template Example
+        link(rel='stylesheet', href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css", integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T", crossorigin="anonymous")
+    body
+        nav.navbar.navbar-dark.bg-dark.navbar-expand-sm
+          ul.navbar-nav
+            li.nav-item
+              a.nav-link(href="#") Home
+            li.nav-item
+              a.nav-link(href="#") About
+            li.nav-item
+              a.nav-link(href="#") Contact Us
+        br
+        br
+        .container
+          .row
+            .col-md-12
+              h2 Exercise 5.3 - Pug Templates
+              p.alert.alert-success= message

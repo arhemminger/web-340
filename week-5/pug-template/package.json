@@ -1,0 +1,10 @@
+{
+  "name": "pug-template",
+  "author": "Andrew Hemminger",
+  "private": true,
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "^4.16.4",
+    "pug": "^2.0.3"
+  }
+}
