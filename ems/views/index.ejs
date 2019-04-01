@@ -5,8 +5,8 @@
   <body>
     <% include navbar %>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
+    <!-- Main jumbotron -->
+    <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-3">Employee Management System</h1>
         <p>
@@ -14,18 +14,17 @@
           Check out the source code or view the project from <a href="https://github.com/arhemminger/web-340/tree/master/ems">GitHub!</a>
         </p>
         <p>
-          <a class="btn btn-primary btn-lg" href="#" role="button"
-            >Learn more &raquo;</a
-          >
+          <a class="btn btn-primary float-right" href="#" role="button"
+            >Learn more &raquo;</a>
         </p>
       </div>
     </div>
 
     <div class="container">
-      <!-- Example row of columns -->
+      <!-- Site content row of columns -->
       <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
+        <div class="col-md-6" id="View">
+          <h2>Employee Records</h2>
           <p>
             Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
             tellus ac cursus commodo, tortor mauris condimentum nibh, ut
@@ -34,37 +33,78 @@
           </p>
           <p>
             <a class="btn btn-secondary" href="#" role="button"
-              >View details &raquo;</a
-            >
+              >View records &raquo;</a>
           </p>
         </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>
-            Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
-            tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-            fermentum massa justo sit amet risus. Etiam porta sem malesuada
-            magna mollis euismod. Donec sed odio dui.
-          </p>
-          <p>
-            <a class="btn btn-secondary" href="#" role="button"
-              >View details &raquo;</a
-            >
-          </p>
+
+      <form id="New">
+        <h3>New Entry Form</h3>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputFirstName">Employee Name:</label>
+            <input type="name" class="form-control" id="inputFirstName" placeholder="first name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputLastName">Last Name:</label>
+            <input type="name" class="form-control" id="inputLastName" placeholder="last name">
+          </div>
         </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>
-            Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
-            egestas eget quam. Vestibulum id ligula porta felis euismod semper.
-            Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
-            nibh, ut fermentum massa justo sit amet risus.
-          </p>
-          <p>
-            <a class="btn btn-secondary" href="#" role="button"
-              >View details &raquo;</a
-            >
-          </p>
+        <div class="form-group">
+          <label for="inputId">Employee ID:</label>
+          <input type="number" class="form-control" id="inputId" placeholder="id">
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="confirmCheck">
+            <label class="form-check-label" for="confirmCheck">
+              Add to employee records
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Submit Entry</button>
+      </form>
+
+    </div>
+
+      <br><br>
+
+      <h2>Featured Employees</h2>
+      <div class="card-group" id="Featured">
+        <div class="card">
+          <img class="card-img-top" src="../images/Mal.JPG" alt="Malcolm Reynolds">
+          <div class="card-body">
+            <h5 class="card-title">Malcolm Reynolds</h5>
+            <p class="card-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Duis non nisl id mauris blandit egestas. Nulla facilisis aliquet
+              lorem quis lacinia.
+            </p>
+            <p class="card-text"><small class="text-muted">Captian</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="./images/Wash.jpg" alt="Hoban Washburn">
+          <div class="card-body">
+            <h5 class="card-title">Hoban Washburn</h5>
+            <p class="card-text">
+              Vestibulum metus turpis, viverra vel lobortisid, mattis non urna.
+              Duis tincidunt, nisi mattis varius lobortis,
+              odio augue blandit quam, nec sagittis mi urna non nulla.
+            </p>
+            <p class="card-text"><small class="text-muted">Pilot</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="../images/Andrew.JPG" alt="Andrew Hemminger">
+          <div class="card-body">
+            <h5 class="card-title">Andrew Hemminger</h5>
+            <p class="card-text">
+              Curabitur tristique a nulla lobortis dictum. Pellentesque ipsum lacus, laoreet
+              id faucibus scelerisque, pellentesque sit amet purus. Fusce mauris
+              urna, scelerisque id porttitor et, auctor et ligula.
+            </p>
+            <p class="card-text"><small class="text-muted">Crew</small></p>
+          </div>
         </div>
       </div>
 
