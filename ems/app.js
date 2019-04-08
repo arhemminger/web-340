@@ -13,13 +13,28 @@ console.log('');
 
 // start program
 // require statements
-var express = require("express");
-var http = require("http");
-var path = require("path");
-var logger = require("morgan");
+const express = require("express");
+const http = require("http");
+const path = require("path");
+const logger = require("morgan");
+const mongoose = require('mongoose');
+const Employee = require('./models/employee');
 
 // assignments
 var app = express();
+
+// mLab connection
+const mongoDB = "mongodb+srv://arhemminger:FES4pNAYHagHYAGo@ems-mdaxh.mongodb.net/test?retryWrites=true";
+mongoose.connect(mongoDB, {
+  useMongoClient: true
+});
+// connection validation
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connected error: "));
+db.once("open", function() {
+    console.log("Application connected to mLab MongoDB instance");
+});
 
 // instructs express to look inside views folder for any files.
 app.set("views", path.resolve(__dirname, "views"));
@@ -31,6 +46,12 @@ app.get("/", function(request, response) {
   response.render("index", {
     title: "Home page"
   });
+});
+
+// model
+var newEmp = new Employee({
+  firstName: "Malcolm",
+  lastName: "Reynolds"
 });
 
 // create node server
