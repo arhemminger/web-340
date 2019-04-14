@@ -3,7 +3,7 @@
 ; Title:  EMS
 ; Author: Professor Krasso
 ; Modified by: Andrew Hemminger
-; Date:   23 March 2019
+; Date:   13 April 2019
 ; Description: EMS - User Interface Development
 ;===========================================
 */
@@ -19,6 +19,7 @@ const path = require("path");
 const logger = require("morgan");
 const mongoose = require('mongoose');
 const Employee = require('./models/employee');
+const helmet = require("helmet");
 
 // assignments
 var app = express();
@@ -40,11 +41,19 @@ db.once("open", function() {
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(logger("short"));
+// helmet
+app.use(helmet.xssFilter());
 
 // route
 app.get("/", function(request, response) {
   response.render("index", {
     title: "Home page"
+  });
+});
+
+app.get("/", function(request, response) {
+  response.render("index", {
+    message:"XSS Prevention Example"
   });
 });
 
