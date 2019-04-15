@@ -71,16 +71,72 @@ app.use(function(request, response, next) {
   next();
 });
 
-// route
+// routing
+/**
+ * Description: Redirects users to the 'index' page.
+ * Type: HttpGet
+ * Request: n/a
+ * Response: index.ejs, Employee[]
+ * URL: localhost:8080
+ */
 app.get('/', function(request, response) {
-  response.render('index', {
-    title: 'Home page'
+  Employee.find({}, function(err, employees) {
+    if (err) {
+      console.log(err);
+      throw err;
+    } else {
+      console.log(employees);
+      res.render('index', {
+        title: 'EMS | Home',
+        employees: employees
+      })
+    }
   });
 });
 
-app.get('/', function(request, response) {
-  response.render('index', {
-    message:'XSS Prevention Example'
+/**
+ * Description: Redirects users to the 'new' page.
+ * Type: HttpGet
+ * Request: n/a
+ * Response: new.ejs
+ * URL: localhost:8080/new
+ */
+app.get('/new', function(request, response) {
+  response.render('new', {
+    title: 'EMS | New',
+    message: 'New Employee Entry Page'
+  });
+});
+
+/**
+ * Description: Processes a form submission.
+ * Type: HttpPost
+ * Request: textName
+ * Response: index.ejs
+ * URL: localhost:8080/process
+ */
+app.post('/process', function(request, response) {
+  // console.log(request.body.txtName);
+  if (!request.body.txtName) {
+    response.status(400).send('Entries must have a name');
+    return;
+  }
+});
+
+/**
+ * Description: List view employee records.
+ * Type: HttpGet
+ * Request: n/a
+ * Response: list.ejs
+ * URL: localhost:8080/list
+ */
+app.get("/list", function(request, response) {
+  Employee.find({}, function(error, employees) {
+     if (error) throw error;
+     response.render("list", {
+         title: "Employee List",
+         employees: employees
+     });
   });
 });
 
