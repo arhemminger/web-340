@@ -24,12 +24,6 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const csrf = require('csurf');
 
-// set up CSRF protection.
-let csrfProtection = csrf({ cookie: true });
-
-// Initialize the express application
-let app = express();
-
 // mLab connection
 const mongoDB = 'mongodb+srv://arhemminger:FES4pNAYHagHYAGo@ems-mdaxh.mongodb.net/test?retryWrites=true';
 mongoose.connect(mongoDB, {
@@ -43,10 +37,11 @@ db.once('open', function() {
     console.log('Application connected to mLab MongoDB instance');
 });
 
-// instructs express to look inside views folder for any files.
-app.set('views', path.resolve(__dirname, 'views'));
-app.set('view engine', 'ejs');
-app.set('port', process.env.PORT || 8080);
+// set up CSRF protection.
+let csrfProtection = csrf({ cookie: true });
+
+// Initialize the express application
+let app = express();
 
 // Morgan logger
 app.use(logger('short'));
@@ -71,6 +66,11 @@ app.use(function(request, response, next) {
   next();
 });
 
+// instructs express to look inside views folder for any files.
+app.set('views', path.resolve(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.set('port', process.env.PORT || 8080);
+
 // routing
 /**
  * Description: Redirects users to the 'index' page.
@@ -80,13 +80,13 @@ app.use(function(request, response, next) {
  * URL: localhost:8080
  */
 app.get('/', function(request, response) {
-  Employee.find({}, function(err, employees) {
-    if (err) {
-      console.log(err);
-      throw err;
+  Employee.find({}, function(error, employees) {
+    if (error) {
+      console.log(error);
+      throw error;
     } else {
       console.log(employees);
-      res.render('index', {
+      response.render('index', {
         title: 'EMS | Home',
         employees: employees
       })
@@ -121,6 +121,56 @@ app.post('/process', function(request, response) {
     response.status(400).send('Entries must have a name');
     return;
   }
+
+  // get the request's form data
+  const employeeName = request.body.txtName;
+  console.log(employeeName);
+
+  // create a employee model
+  let employee = new Employee({
+    name: employeeName
+  });
+
+  // save
+  employee.save(function(error) {
+    if (error) {
+      console.log(error);
+      throw error;
+    } else {
+      console.log(employeeName + ' saved successfully!');
+      response.redirect('/');
+    }
+  });
+});
+
+/**
+ * Description: Redirects users to the 'home' page'
+ * Type: HttpGet
+ * Request: queryName
+ * Response: view.ejs, Employee[] | index.ejs
+ * URL: localhost:8080/view/:queryName
+ */
+app.get('/view/:queryName', function(request, response) {
+  var queryName = request.params['queryName'];
+
+  Employee.find({'name': queryName}, function(error, employees) {
+    if (error) {
+      console.log(error);
+      throw error;
+    } else {
+      console.log(employees);
+
+      if (employees.length > 0) {
+        response.render('view', {
+          title: 'EMS | View',
+          employee: employees
+        })
+      }
+      else {
+        response.redirect('/list');
+      }
+    }
+  })
 });
 
 /**
@@ -135,19 +185,18 @@ app.get("/list", function(request, response) {
      if (error) throw error;
      response.render("list", {
          title: "Employee List",
-         employees: employees
+         employee: employees
+         //employees: employees
      });
   });
-});
-
-// model
-var newEmp = new Employee({
-  firstName: 'Malcolm',
-  lastName: 'Reynolds'
 });
 
 // create node server
 http.createServer(app).listen(8080, function() {
   console.log('Application started and listening on port 8080');
 });
+
+//http.createServer(app).listen(app.get('port'), function() {
+//  console.log('Application started and listening on port ' + app.get('port'));
+//});
 // end program

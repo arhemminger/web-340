@@ -18,7 +18,9 @@ const Schema = mongoose.Schema;
 // Employee Schema
 let EmployeeSchema = new Schema({
   firstName: {type: String, required: true },
-  lastName: {type: String, required: true }
+  lastName: {type: String, required: true },
+  employeeId: {type: Number, required: true, unique: true },
+  addedAt: {type: Date, default: Date.now }
 });
 
 // Export the model so its publicly available.

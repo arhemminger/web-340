@@ -1,22 +1,30 @@
 <!--Tabular view of employee records-->
-<% if (employees.length) { %>
-  <h2>‐‐ Employee Listing ‐‐</h2>
-  <br>
-  <a href="/new">Add New</a>
-  <table class="table table‐hover">
-      <thead class="thead‐dark">
-      <tr>
-          <th>Name</th>
-      </tr>
+<div role="main" class="container" style="width: 50%;">
+    <br><br>
+    <% if (employees.length) { %>
+
+    <h2>‐‐ Employee Listing ‐‐</h2>
+    <br>
+    <a href="/new">Add New</a>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Functions</th>
+        </tr>
       </thead>
-      <tbody>
-      <% employees.forEach(function (entry) { %>
-      <tr>
-          <td><%= entry.name %></td>
-      </tr>
+        <tbody>
+        <% employees.forEach(function (entry) { %>
+        <tr>
+            <td><%= entry.name %> td>
+            <td><a href="/view/<%= entry.name %>">VIEW</a></td>
+        </tr>
       </tbody>
-      <% }) %>
-  </table>
-  <% } else { %>
-  No entries! <a href="/new">Add one!</a>
-  <% } %>
+        <% }) %>
+    </table>
+    <% } else { %>
+      No entries! <a href="/new">Add one!</a>
+    <% } %>
+
+    <br>
+</div>
